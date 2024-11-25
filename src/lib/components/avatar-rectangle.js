@@ -2,15 +2,16 @@ import * as React from 'react';
 import { hashCode, getUnit, getRandomColor, getBoolean } from '../utilities';
 
 const ELEMENTS = 4;
+const SIZE = 100;
 
-function generateColors(name, colors, width, height) {
+function generateColors(name, colors) {
   const numFromName = hashCode(name);
   const range = colors && colors.length;
 
   const elementsProperties = Array.from({ length: ELEMENTS }, (_, i) => ({
     color: getRandomColor(numFromName + i, colors, range),
-    translateX: getUnit(numFromName * (i + 1), width / 2 - (i + 17), 1),
-    translateY: getUnit(numFromName * (i + 1), height / 2 - (i + 17), 2),
+    translateX: getUnit(numFromName * (i + 1), SIZE / 2 - (i + 17), 1),
+    translateY: getUnit(numFromName * (i + 1), SIZE / 2 - (i + 17), 2),
     rotate: getUnit(numFromName * (i + 1), 360),
     isSquare: getBoolean(numFromName, 2),
   }));

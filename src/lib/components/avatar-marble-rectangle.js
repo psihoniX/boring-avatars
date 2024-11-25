@@ -1,17 +1,20 @@
 import * as React from 'react';
 import { hashCode, getUnit, getRandomColor } from '../utilities';
 
-const ELEMENTS = 3;
+const ELEMENTS = 5;
 
-function generateColors(name, colors, width, height) {
+function generateColors(name, colors) {
   const numFromName = hashCode(name);
   const range = colors && colors.length;
 
   const elementsProperties = Array.from({ length: ELEMENTS }, (_, i) => ({
     color: getRandomColor(numFromName + i, colors, range),
-    translateX: getUnit(numFromName * (i + 1), width / 10, 1),
-    translateY: getUnit(numFromName * (i + 1), height / 10, 2),
-    scale: 1.2 + getUnit(numFromName * (i + 1), Math.min(width, height) / 20) / 10,
+
+    // Scale and shift values to desired ranges
+    translateX: 200 + Math.abs(getUnit(numFromName * (i + 1), 800, 1)), // [200, 1000]
+    translateY: 200 + Math.abs(getUnit(numFromName * (i + 1), 200, 2)), // [200, 400]
+
+    scale: 1.2 + getUnit(numFromName * (i + 1), 2000 / 20) / 10,
     rotate: getUnit(numFromName * (i + 1), 360, 1),
   }));
 
@@ -23,8 +26,8 @@ const AvatarMarbleRectangle = (props) => {
   const properties = generateColors(name, colors);
   const maskID = React.useId();
 
-  const W = width || 200; // Default width if not provided
-  const H = height || 100; // Default height if not provided
+  const W = width || 1440; // Default width if not provided
+  const H = height || 150; // Default height if not provided
 
   return (
     <svg
@@ -81,6 +84,72 @@ const AvatarMarbleRectangle = (props) => {
             properties[2].translateY +
             ') rotate(' +
             properties[2].rotate +
+            ' ' +
+            W / 2 +
+            ' ' +
+            H / 2 +
+            ') scale(' +
+            properties[2].scale +
+            ')'
+          }
+        />
+        <path
+          filter={`url(#filter_${maskID})`}
+          style={{
+            mixBlendMode: 'overlay',
+          }}
+          d="M22.216 24L0 46.75l14.108 38.129L78 86l-3.081-59.276-22.378 4.005 12.972 20.186-23.35 27.395L22.215 24z"
+          fill={properties[3].color}
+          transform={
+            'translate(' +
+            properties[3].translateX +
+            ' ' +
+            properties[3].translateY +
+            ') rotate(' +
+            properties[3].rotate +
+            ' ' +
+            W / 2 +
+            ' ' +
+            H / 2 +
+            ') scale(' +
+            properties[3].scale +
+            ')'
+          }
+        />
+        <path
+          filter={`url(#filter_${maskID})`}
+          style={{
+            mixBlendMode: 'overlay',
+          }}
+          d="M22.216 24L0 46.75l14.108 38.129L78 86l-3.081-59.276-22.378 4.005 12.972 20.186-23.35 27.395L22.215 24z"
+          fill={properties[0].color}
+          transform={
+            'translate(' +
+            properties[0].translateX +
+            ' ' +
+            properties[0].translateY +
+            ') rotate(' +
+            properties[0].rotate +
+            ' ' +
+            W / 2 +
+            ' ' +
+            H / 2 +
+            ') scale(' +
+            properties[0].scale +
+            ')'
+          }
+        />
+        <path
+          filter={`url(#filter_${maskID})`}
+          d="M32.414 59.35L50.376 70.5H72.5v-71H33.728L26.5 13.381l19.057 27.08L32.414 59.35z"
+          fill={properties[4].color}
+          transform={
+            'translate(' +
+            properties[4].translateX +
+            ' ' +
+            properties[4].translateY +
+            ') rotate(' +
+            properties[4].rotate +
             ' ' +
             W / 2 +
             ' ' +
