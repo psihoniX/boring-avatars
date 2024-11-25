@@ -8,6 +8,8 @@ declare module 'boring-avatars' {
     variant?: 'marble' | 'beam' | 'pixel' | 'sunset' | 'ring' | 'bauhaus';
     colors?: string[];
     [key: string]: any; // Allows any additional prop
+    width?: number | string;
+    height?: number | string;
   }
 
   interface AvatarComponent {

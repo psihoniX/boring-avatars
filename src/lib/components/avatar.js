@@ -6,6 +6,8 @@ import AvatarPixel from './avatar-pixel';
 import AvatarBeam from './avatar-beam';
 import AvatarSunset from './avatar-sunset';
 import AvatarMarble from './avatar-marble';
+import AvatarRectangle from './avatar-rectangle';
+import AvatarMarbleRectangle from './avatar-marble-rectangle';
 
 const AVATAR_VARIANTS = {
   pixel: AvatarPixel,
@@ -14,6 +16,8 @@ const AVATAR_VARIANTS = {
   beam: AvatarBeam,
   sunset: AvatarSunset,
   marble: AvatarMarble,
+  rectangle: AvatarRectangle,
+  rectangleMarble: AvatarMarbleRectangle,
 };
 
 const DEPRECATED_VARIANTS = {
@@ -28,6 +32,8 @@ const Avatar = ({
   title = false,
   size,
   square = false,
+  width,
+  height,
   ...otherProps
 }) => {
   const resolvedVariant = DEPRECATED_VARIANTS[variant] || variant;
@@ -41,6 +47,8 @@ const Avatar = ({
       size={size}
       square={square}
       {...otherProps}
+      height={height}
+      width={width}
     />
   );
 };

@@ -70,7 +70,7 @@ const Input = styled.input`
   }
 `;
 
-const AvatarWrapper = ({ name, playgroundColors, size, square, variant }) => {
+const AvatarWrapper = ({ name, playgroundColors, size, square, variant, width, height }) => {
   const [avatarName, setAvatarName] = useState(name);
   const handleFocus = (event) => event.target.select();
   const ref = useRef();
@@ -154,6 +154,8 @@ const variants = {
   sunset: 'sunset',
   pixel: 'pixel',
   marble: 'marble',
+  rectangle: 'rectangle',
+  rectangleMarble: 'rectangleMarble',
 };
 
 const Playground = () => {
@@ -237,6 +239,8 @@ const Playground = () => {
       <AvatarsGrid>
         {exampleNames.map((exampleName, name) => (
           <AvatarWrapper
+            height={100}
+            width={1000}
             key={name}
             size={avatarSize}
             square={isSquare}
