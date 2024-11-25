@@ -5,7 +5,7 @@ declare module 'boring-avatars' {
     size?: number | string;
     name?: string;
     square?: boolean;
-    variant?: 'marble' | 'beam' | 'pixel' | 'sunset' | 'ring' | 'bauhaus';
+    variant?: 'marble' | 'beam' | 'pixel' | 'sunset' | 'ring' | 'bauhaus'| 'rectangle' | 'rectangleMarble';
     colors?: string[];
     [key: string]: any; // Allows any additional prop
     width?: number | string;
